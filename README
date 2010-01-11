@@ -1,0 +1,8 @@
+This is some quickly hacked git commands that work recursively on main
+project and it's submodules.
+
+* git-super-st is recusive git status, so that you don't forget to
+  commit anything.
+* git-super-clean is recursive cleaner
+
+This is public domain.

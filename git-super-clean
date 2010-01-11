@@ -1,0 +1,9 @@
+#!/usr/bin/ruby
+
+me = (File.readlink($0) rescue $0)
+require File.join(File.dirname(me), "common")
+
+args = ARGV[0] ? ARGV[0] : "-Xfd"
+recurse_submodule(".") do
+  sh "git clean #{args}"
+end

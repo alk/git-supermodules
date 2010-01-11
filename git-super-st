@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+me = (File.readlink($0) rescue $0)
+require File.join(File.dirname(me), "common")
+
+args = ARGV[0] ? ARGV[0] : ""
+recurse_submodule(".") do
+  sh "git status #{args} || true"
+end
