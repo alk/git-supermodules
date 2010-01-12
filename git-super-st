@@ -4,6 +4,8 @@ me = (File.readlink($0) rescue $0)
 require File.join(File.dirname(me), "common")
 
 args = ARGV[0] ? ARGV[0] : ""
-recurse_submodule(".") do
+recurse_submodule(".") do |r|
+  r.call
   sh "git status #{args} || true"
+  puts
 end
