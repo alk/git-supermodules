@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+me = (File.readlink($0) rescue $0)
+require File.join(File.dirname(me), "common")
+
+ARGV[0] || raise('gimme args')
+recurse_submodule(".") do |r|
+  puts "# #{ARGV.join(' ')}"
+  child = fork do
+    exec *ARGV
+  end
+  Process::wait(child)
+  if $?.exitstatus != 0
+    puts "FAILED! #{$?.inspect}"
+  end
+end
